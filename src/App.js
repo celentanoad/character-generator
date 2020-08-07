@@ -11,12 +11,16 @@ function App() {
     else setView('create');
   }
 
+  const handleAddCharacter = (character) => {
+    console.log(character)
+  }
+
   return (
     <div className="App">
       {view === 'create' ?
       <>
       <button onClick={toggleView}>View Characters</button>
-      <CharacterCreator />
+      <CharacterCreator handleAddCharacter={handleAddCharacter}/>
       </>
       :
       <>
