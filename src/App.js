@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import CharacterCreator from './components/CharacterCreator';
+import CharacterViewer from './components/CharacterViewer';
 
 function App() {
+  const [view, setView] = useState('create');
+  
+  const toggleView = () => {
+    if (view === 'create') setView('view');
+    else setView('create');
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {view === 'create' ?
+      <>
+      <button onClick={toggleView}>View Characters</button>
+      <CharacterCreator />
+      </>
+      :
+      <>
+      <button onClick={toggleView}>Create New Character</button>
+      <CharacterViewer />
+      </>
+  }
+
     </div>
   );
 }
